@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+.myphoto{
+	width:200px; height:100px；
+	border:1px;
+	position:absolute;
+    top: 166px;
+    left: 1000px;
+}
+.myphoto img{
+	width:200px;
+	height:300px;
+	margin:10px;
+}
+.centerbox{
+	position:absolute;
+    top: 166px;
+    left: 220px;
+	background-color:#f6f6f6;
+	width:750px;
+}

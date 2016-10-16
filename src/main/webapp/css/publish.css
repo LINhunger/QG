@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+th,td{
+	padding:3px;
+	}
+th{
+	text-align:right;
+	font-weight:normal;
+	}
+.box{
+	width:700px;
+	margin:0 auto;
+	background-color:#f6f6f6;
+	}
+h1{
+	color:#666;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-weight:normal;
+	font-size:40px;
+	padding-bottom:15px;
+	border-bottom:2px solid #8fc629;
+	background-color:#fff;
+	}
+h2{
+	font-size:18px;
+	font-weight:normal;
+	padding:10px;
+	}
+	
+
+.submitbutton{
+	width:100px;
+	height:25px;
+	margin-top:20px;
+	margin-left:186px;
+	font-size:12px;
+	font-weight:bold;
+	border:2px solid #abd8b3;
+	background-color:#a6d3ae;
+	color:#FFFFFF;
+	}

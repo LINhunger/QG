@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+	<!-- 注册监听器 -->
+	<listener>
+		<!-- 全局对象初始化监听器 -->
+		<listener-class>com.util.listener.MyServletContextListener</listener-class>
+	</listener>
+	<listener>
+		<!-- 注册初始化在线人数监听器 -->
+		<listener-class>com.util.listener.OnlineCountServletContextListener</listener-class>
+	</listener>
+	<listener>
+		<!-- 注册在线人数监听器 -->
+		<listener-class>com.util.listener.OnlineCountHttpSessionListener</listener-class>
+	</listener>
+	<!-- 注册监听器 -->
+	<!-- 设置错误页面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/errorpage/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/errorpage/500.jsp</location>
+	</error-page>
+	<!-- 设置错误页面 -->
+	<!-- 配置过滤器 -->
+	<filter>
+		<!-- 配置字符过滤过滤器 -->
+		<filter-name>ReCharacterFilter</filter-name>
+		<filter-class>com.util.ReCharacterFilter</filter-class>
+		<init-param>
+			<param-name>REESCAPE_LIST</param-name>
+			<param-value>/WEB-INF/reescapelist.txt</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>ReCharacterFilter</filter-name>
+		<servlet-name>PublishServlet</servlet-name>
+		<servlet-name>ChangeArticleServlet</servlet-name>
+		<servlet-name>SavaCommentServlet</servlet-name>
+		<servlet-name>SaveRecommentServlet</servlet-name>
+	</filter-mapping>
+	<filter>
+		<!-- 配置权限验证过滤器 -->
+		<filter-name>PrivilegeFilter</filter-name>
+		<filter-class>com.util.PrivilegeFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrivilegeFilter</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+		<url-pattern>/com/servlet/admin/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<!-- 配置防盗链过滤器 -->
+		<filter-name>HotLinkingFilter</filter-name>
+		<filter-class>com.util.HotLinkingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HotLinkingFilter</filter-name>
+		<!-- <url-pattern>/com/servlet/*</url-pattern> -->
+		<url-pattern>/fixedpage.jsp</url-pattern>
+		<url-pattern>/article/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<!-- 配置判断是否登录过滤器 -->
+		<filter-name>SignInFilter</filter-name>
+		<filter-class>com.util.SignInFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SignInFilter</filter-name>
+		<url-pattern>/picture.jsp</url-pattern>
+		<url-pattern>/upload.jsp</url-pattern>
+		<url-pattern>/uploadfile.jsp</url-pattern>
+		<url-pattern>/personal/*</url-pattern>
+		<url-pattern>/article/publish.jsp</url-pattern>
+		<url-pattern>/com/servlet/comment/*</url-pattern>
+		<url-pattern>/com/servlet/recomment/*</url-pattern>
+		<url-pattern>/com/servlet/personal/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<!-- 配置字符乱码过滤器 -->
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>com.util.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<!-- 配置缓存过滤器 -->
+		<filter-name>NoCacheFilter</filter-name>
+		<filter-class>com.util.NoCacheFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>NoCacheFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<!-- 配置字符过滤过滤器 -->
+		<filter-name>CharacterFilter</filter-name>
+		<filter-class>com.util.CharacterFilter</filter-class>
+		<init-param>
+			<param-name>ESCAPE_LIST</param-name>
+			<param-value>/WEB-INF/escapelist.txt</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterFilter</filter-name>
+		<servlet-name>PublishServlet</servlet-name>
+		<servlet-name>ChangeArticleServlet</servlet-name>
+		<servlet-name>SavaCommentServlet</servlet-name>
+		<servlet-name>SaveRecommentServlet</servlet-name>
+		<!-- <url-pattern>/*</url-pattern> -->
+	</filter-mapping>
+	<!-- 配置过滤器 -->
+  <display-name></display-name>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SignUpServlet</servlet-name>
+    <servlet-class>com.servlet.SignUpServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SignInServlet</servlet-name>
+    <servlet-class>com.servlet.SignInServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Verification</servlet-name>
+    <servlet-class>com.servlet.Verification</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Person</servlet-name>
+    <servlet-class>com.servlet.Person</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>com.servlet.UploadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ChangePasswordServlet</servlet-name>
+    <servlet-class>com.servlet.ChangePasswordServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>BeanUtilsServlet</servlet-name>
+    <servlet-class>com.servlet.BeanUtilsServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UploadPictureServlet</servlet-name>
+    <servlet-class>com.servlet.UploadPictureServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>com.servlet.DownloadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>kickUser</display-name>
+    <servlet-name>KickServlet</servlet-name>
+    <servlet-class>com.servlet.admin.KickServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>ReleaseServlet</display-name>
+    <servlet-name>ReleaseServlet</servlet-name>
+    <servlet-class>com.servlet.admin.ReleaseServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>ReleaseServlet</display-name>
+    <servlet-name>PublishServlet</servlet-name>
+    <servlet-class>com.servlet.article.PublishServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>ReleaseServlet</display-name>
+    <servlet-name>BrowseArticleServlet</servlet-name>
+    <servlet-class>com.servlet.article.BrowseArticleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SelectServlet</servlet-name>
+    <servlet-class>com.servlet.article.SelectServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SavaCommentServlet</servlet-name>
+    <servlet-class>com.servlet.comment.SavaCommentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SaveRecommentServlet</servlet-name>
+    <servlet-class>com.servlet.recomment.SaveRecommentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ModifyArticleServlet</servlet-name>
+    <servlet-class>com.servlet.article.ModifyArticleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteArticleServlet</servlet-name>
+    <servlet-class>com.servlet.personal.DeleteArticleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ChangeArticleServlet</servlet-name>
+    <servlet-class>com.servlet.personal.ChangeArticleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteCommentServlet</servlet-name>
+    <servlet-class>com.servlet.comment.DeleteCommentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>StatusServlet</servlet-name>
+    <servlet-class>com.servlet.personal.StatusServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteResourceServlet</servlet-name>
+    <servlet-class>com.servlet.admin.DeleteResourceServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LimitArticleServlet</servlet-name>
+    <servlet-class>com.servlet.admin.LimitArticleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteRecommentServlet</servlet-name>
+    <servlet-class>com.servlet.recomment.DeleteRecommentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ClearInformServlet</servlet-name>
+    <servlet-class>com.servlet.personal.ClearInformServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SaveFavoriteServlet</servlet-name>
+    <servlet-class>com.servlet.personal.SaveFavoriteServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ClearFavoriteServlet</servlet-name>
+    <servlet-class>com.servlet.personal.ClearFavoriteServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>KickUserServlet</servlet-name>
+    <servlet-class>com.servlet.KickUserServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>SignUpServlet</servlet-name>
+    <url-pattern>/com/servlet/SignUpServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SignInServlet</servlet-name>
+    <url-pattern>/com/servlet/SignInServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Verification</servlet-name>
+    <url-pattern>/com/servlet/Verification</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/com/servlet/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChangePasswordServlet</servlet-name>
+    <url-pattern>/com/servlet/ChangePasswordServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet-mapping>
+    <servlet-name>BeanUtilsServlet</servlet-name>
+    <url-pattern>/com/servlet/BeanUtilsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadPictureServlet</servlet-name>
+    <url-pattern>/com/servlet/UploadPictureServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DownloadServlet</servlet-name>
+    <url-pattern>/com/servlet/DownloadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>KickServlet</servlet-name>
+    <url-pattern>/com/servlet/admin/KickServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ReleaseServlet</servlet-name>
+    <url-pattern>/com/servlet/admin/ReleaseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PublishServlet</servlet-name>
+    <url-pattern>/com/servlet/article/PublishServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BrowseArticleServlet</servlet-name>
+    <url-pattern>/com/servlet/article/BrowseArticleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SelectServlet</servlet-name>
+    <url-pattern>/com/servlet/article/SelectServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SavaCommentServlet</servlet-name>
+    <url-pattern>/com/servlet/comment/SavaCommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SaveRecommentServlet</servlet-name>
+    <url-pattern>/com/servlet/recomment/SaveRecommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ModifyArticleServlet</servlet-name>
+    <url-pattern>/com/servlet/article/ModifyArticleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteArticleServlet</servlet-name>
+    <url-pattern>/com/servlet/personal/DeleteArticleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChangeArticleServlet</servlet-name>
+    <url-pattern>/com/servlet/personal/ChangeArticleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteCommentServlet</servlet-name>
+    <url-pattern>/com/servlet/comment/DeleteCommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StatusServlet</servlet-name>
+    <url-pattern>/com/servlet/personal/StatusServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteResourceServlet</servlet-name>
+    <url-pattern>/com/servlet/admin/DeleteResourceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LimitArticleServlet</servlet-name>
+    <url-pattern>/com/servlet/admin/LimitArticleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteRecommentServlet</servlet-name>
+    <url-pattern>/com/servlet/recomment/DeleteRecommentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ClearInformServlet</servlet-name>
+    <url-pattern>/com/servlet/personal/ClearInformServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SaveFavoriteServlet</servlet-name>
+    <url-pattern>/com/servlet/personal/SaveFavoriteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ClearFavoriteServlet</servlet-name>
+    <url-pattern>/com/servlet/personal/ClearFavoriteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>KickUserServlet</servlet-name>
+    <url-pattern>/com/servlet/KickUserServlet</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>success.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

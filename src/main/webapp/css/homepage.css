@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+p{
+	float:left;
+}
+.submitbutton{
+	width:100px;
+	height:30px;
+	margin-left:10px;
+	font-size:12px;
+	font-weight:bold;
+	background-color:#a6d3ae;
+	color:#FFFFFF;
+	}
+body{
+	background-color:#f6f6f6;
+}

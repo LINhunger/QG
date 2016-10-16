@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+.head{
+	font-size: 20px;
+}
+.article{
+	width: 800px;
+	margin:0 auto;
+	background-color:#f6f6f6;
+}
+.content p{
+	text-indent:20px;	
+}
+form{
+	padding-left: 220px;
+}
+textarea{
+	width:800px;
+	height:100px;
+	margin: 0 auto;
+	}
+	th,td{
+	padding:10px;
+	font-size: 20;
+	}
+th{
+	text-align:right;
+	font-weight:normal;
+	}
+.box{
+	margin:0 auto;
+	width:800px;
+	background-color:#CCC;
+	}
+.submit{
+	margin-left: 730px;
+}
+table ul{
+	list-style:none;
+	margin-left: 10px;
+	}
+#r_content{
+	width:300px;
+	height:23px;
+}
+.close{
+	display:none;
+}
+.open{
+	display:block;
+}
+.comment{
+	margin:0 auto;
+}

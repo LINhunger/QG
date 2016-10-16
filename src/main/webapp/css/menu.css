@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+.test{
+	margin-top:80px; 
+}
+.test ul{
+	list-style:none;
+	} 
+.test li{
+	float:left;
+	width:100px;
+	background-color:#a6d3ae;
+	margin-left:3px;
+	line-height:30px;
+	} 
+.test a{
+	display:block;
+	text-align:center;
+	height:30px;
+	} 
+.test a:link{
+	color:#666;
+	text-decoration:none;
+	} 
+.test a:visited{
+	color:#666;
+	text-decoration:none;
+	} 
+.test a:hover{
+	color:#FFF;
+	 font-weight:bold;
+	 text-decoration:none;
+	 }
